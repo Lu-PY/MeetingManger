@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>華新雲平台 | 會議資訊</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="assets/js/jquery-3.4.1.min.js"></script>
+	<script src="assets/js/insertattend.js"></script>
+</head>
+
+<body>
+
+	<nav class="navbar shadow-sm .bg-white">
+		<div class="container" style="text-align: center;">
+			<div class="navbar-brand" style="padding-left: 10%;">
+				<a class="navbar-brand header-title" href="/"><b>華新雲平台</b> </a>
+			</div>
+			<div>
+				hi, user &emsp;
+				<a class="btn btn-outline-primary" href="login.html">登出</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- 側邊攔 -->
+	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%" id="sidebar">
+		<h4 class="w3-bar-item ">會議管理</h4>
+		<a href="manger.html" class="w3-bar-item">會議列表</a>
+		<a href="check.html" class="w3-bar-item">待核准會議</a>
+		
+	</div>
+
+	<!-- 右頁面內容 -->
+	<div style="margin-left:15%; height: 100%; min-height: 100vh;">
+		<div class="w3-container">
+			<div style="margin-top: 3%;">
+
+				<div style="margin:0 5%">
+					
+
+					<!-- 想把下面那排按鈕移到靠右 -->
+
+					<!--選擇參與此會議的模式，後端判斷使用者身分?再存入對應的資料表內與會模式欄位-->
+					<div class="row">
+						<div class="col-sm">
+							<div style="text-align: left">
+							<label style="font-size: 20px;">&#124;&nbsp;會議資訊 &gt; 會議01</label>
+							</div>
+							
+							<div style="text-align: right">
+								<a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModeModal">與會模式</a>
+								<!--場地負責人才能簽核，後端判斷使用者身分?-->
+								<a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#PlaceModal">場地簽核</a>
+								<!--主管才能簽核，後端判斷使用者身分?-->
+								<a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#CheckModal">簽核</a>
+								<!--負責人看或是大家都能看?後端不知道要不要存計算出來的東西?-->
+								<a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#CostModal" id="costcalculate">成本估算</a>
+								<!--會議結束後才出現，後端判斷時間結束?-->
+								<a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#FileModal">檔案列表</a>
+								<!--負責人才能編輯，後端判斷使用者身分?-->
+								<button class="btn btn-outline-primary btn-sm" type="button"  id="openedit">編輯</button>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+				<div style="margin:0 5%">
+					
+					<!--後端讀取資訊資料-->
+					<div style="background:#f5f5f5;padding:1% 1%">
+						<div class="row" style="width: 100%; margin:0 auto;padding:1% 2%">
+							<div class="col-sm">
+								<label>會議名稱：</label>
+								<input type="text" class="form-control edit" id="meetingname" value="會議01" disabled>
+							</div>
+							<div class="col-sm">
+								<label>承辦人編號：</label>
+								<input class="form-control " list="employeeList" name=" "   disabled>
+										<datalist id="undertaker" >
+											<option value="王一">
+											<option value="王二">
+											<option value="王三">
+											<option value="王四">
+											<option value="王五">
+										</datalist>
+							</div>
+						</div>
+						<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+							<div class="col-sm">
+								<label>開始時間：</label>
+								<input type="datetime-local" class="form-control edit" id="starttime" disabled>
+							</div>
+							<div class="col-sm">
+								<label>結束時間：</label>
+								<input type="datetime-local" class="form-control edit" id="endtime" disabled>
+							</div>
+						</div>
+						<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+							<div class="col-sm">
+								<label>主持人編號：</label>
+								<input class="form-control edit" list="employeeList" name=" "   disabled>
+										<datalist id="undertaker" >
+											<option value="王一">
+											<option value="王二">
+											<option value="王三">
+											<option value="王四">
+											<option value="王五">
+										</datalist>
+							</div>
+							<div class="col-sm">
+								<label>地點：</label>
+								<select class="form-control edit" disabled id="location">
+									<option>會議室1</option>
+									<option>會議室2</option>
+									<option>會議室3</option>
+									<option>會議室4</option>
+									<option>會議室5</option>
+								</select>
+							</div>
+						</div>
+						<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+							<div class="col-sm">
+								<label>主題議程：</label>
+								<textarea class="form-control edit" id="theme"  disabled></textarea>
+							</div>
+						</div>
+						<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+							<div class="col-sm">
+								<label>與會人員：</label>
+								<div style="text-align: right">
+									<button type="button" class="btn btn-outline-primary btn-sm addbtn"
+												 id="addattend" >
+										<span aria-hidden="true">新增&#43;</span>
+									</button>
+								</div>
+							</div>
+							<table class="table table-hover" style="width: 100%; background: #fffffe;background-size:auto; ">
+								<thead  class="thead-light">
+									<tr>
+										<th scope="col">員工編號</th>
+										<th scope="col">參與身分</th>
+										<th scope="col">與會模式</th>
+										<th scope="col" class="addbtn">刪除</th>
+									</tr>
+								</thead>
+
+								<tbody id="attendeelist">
+									<tr class="attendee" id="delattendee">
+										<th scope="row" >
+											<input class="form-control edit " list="employeeList" name="employeeList" size="10"  disabled >
+												<datalist id="employeeList"><option ></option>
+												</datalist>
+										</th>
+										
+										<td >
+											<select id="attendtype" class="form-control edit" disabled>
+												<option value="1" selected>主持人</option>
+												<option value="2">出席</option>
+												<option value="3">列席</option>
+											</select>
+										</td>
+										<td  valign="middle">
+											等職員自己填與會模式才回傳
+										</td>
+										<td class="addbtn">
+											
+										</td>
+									</tr>
+								</tbody>	
+							</table>
+
+						</div>
+						<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%;">
+							<div class="col-sm">
+								<div style="text-align: right">
+<!--重新整理網頁回到編輯為保存前的狀態?-->
+									<button class="btn btn-outline-secondary addbtn" type="button" value='變更欄位為不可用' id="backbtn"><a href="info.html">取消</a></button>
+<!--重新整理網頁回到編輯為保存前的狀態?-->
+									<button class="btn btn-outline-danger addbtn" type="submit" value='變更欄位為可用' id="savebtn">保存</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+		<!--成本計算視窗-->
+		<div class="modal fade" id="CostModal" tabindex="-1" role="dialog" aria-labelledby="CostModalTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="Cost">會議成本估計</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="">
+						<div class="modal-body">
+							<!--計算寫在js檔裡惹-->
+							<span id="peoplecost"></span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--選擇與會模式視窗-->
+		<div class="modal fade" id="ModeModal" tabindex="-1" role="dialog" aria-labelledby="ModeModalTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="Mode">與會模式選擇</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="">
+						<div class="modal-body">
+
+							<div class="row-1">
+								<div class="col-5">
+									請選擇參與會議的模式。
+								</div>
+							</div>
+							<div class="row-1">
+								<div class="col-sm">
+									<input type="radio" name="attendmode" value="local">在場
+								</div>
+								<div class="col-sm">
+									<input type="radio" name="attendmode" value="online">線上
+								</div>
+								<div class="col-sm">
+									<input type="radio" name="attendmode" value="offline">離線
+								</div>
+								<!--後端取得選擇結果-->
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">否</button>
+							<button type="button" class="btn btn-primary">是 </button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!--簽核視窗-->
+		<div class="modal fade" id="CheckModal" tabindex="-1" role="dialog" aria-labelledby="CheckModalTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="Check">簽核</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<!--後端取得簽核結果-->
+					<div class="modal-body">
+						是否簽核本會議？
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">否</button>
+						<button type="button" class="btn btn-primary">是 </button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--場地簽核視窗-->
+		<div class="modal fade" id="PlaceModal" tabindex="-1" role="dialog" aria-labelledby="PlaceModalTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="Place">場地簽核</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<div class="row">
+							<div class="col">
+								<h4>是否簽核場地租借時間與使用權？</h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<label>開始時間：</label>
+								<input type="datetime-local" class="form-control" id="starttime" disabled>
+							</div>
+							<div class="col">
+								<label>結束時間：</label>
+								<input type="datetime-local" class="form-control" id="endtime" disabled>
+							</div>
+							<div class="col">
+								<label>地點：</label>
+								<select class="form-control" disabled>
+									<option>會議室1</option>
+									<option>會議室2</option>
+									<option>會議室3</option>
+									<option>會議室4</option>
+									<option>會議室5</option>
+								</select>
+							</div>
+						</div>
+						<!--後端取得簽核結果-->
+						
+					</div>
+					<form action="">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">否</button>
+							<button type="button" class="btn btn-primary">是 </button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		
+
+
+		<!--上傳檔案-->
+		<div class="modal fade bd-example-modal-lg" id="FileModal" tabindex="-1" role="dialog"
+			aria-labelledby="FileModalLabel" aria-hidden="true">
+			<div class="modal-dialog " role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="File">會議檔案列表</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<!--後端讀取檔案位置-->
+					<div class="modal-body">
+						<div class="list-group list-group-flush">
+							<a href="#" class="list-group-item list-group-item-action">會議01全文檔.pdf</a>
+							<a href="#" class="list-group-item list-group-item-action">會議01影音檔.mp4</a>
+						</div>
+						<!--後端輸入與讀取檔案位置-->
+						<div style="margin:1% 1%;">
+							<form action="">
+								<label class="btn btn-info" style=" width: 100%">
+									<input id="upload_file"  type="file"
+										accept="application/msword,application/pdf">
+								</label>
+								<div style="text-align: right">
+								<button type="submit"class="btn btn-outline-danger">上傳</button>
+								</div>
+							</form>
+						</div>
+						<div class="modal-header">
+							<h5 class="modal-title" id="File">通知列表</h5>
+						</div>
+						<div class="modal-body">
+							<!--勾選刪除，先讀取與會人員的名單的員工檔?得到姓名職位信箱再新增額外通知人員，最後用此名單的email去寄通知-->
+							<div class="col-sm">
+									<div class="row">
+										
+										<!--讀取小視窗內讀取後端-->
+<!--New1130start:把刪除移掉，新增改不跳窗，直接動態加入下方-->
+										
+										<div style="text-align: left">
+											&nbsp;&nbsp;
+											<button type="button" class="btn btn-outline-primary btn-sm"
+												id="addemail">
+												<span aria-hidden="true">&#10010; 新增</span>
+											</button>
+										</div>
+<!--New1130end-->
+									</div>
+								<form action="">
+									<table class="table table-hover" 
+											style="width: 100%; background:#fffffe; background-size:auto; ">
+											<thead  class="thead-light">
+												<tr >
+													<th scope="col">員工編號</th>
+													<th scope="col" >刪除</th>
+												</tr>
+											</thead>
+											<tbody id="emaillist">
+												<tr class="mail" id="delemail">
+													<th scope="row">
+														<input class="form-control" list="employeeList" name="employeeList" size="10">
+														<datalist id="employeeList">
+															<option></option>
+														</datalist>
+													</th>
+													<td >
+														
+													</td>
+												</tr>
+											</tbody>
+										</table>
+<!--New1130end-->
+										<div style="text-align:right;margin:2%">
+											<button class="btn btn-outline-info" type="submit">通知</button>
+										</div>
+								</form>
+						</div>
+						</div>
+					</div>
+			</div>
+		</div>
+
+
+
+	
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+			integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+		</script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+			integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+		</script>
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>華新雲平台 | 會議列表</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<script src="assets/js/jquery-3.4.1.min.js"></script>
+	<script src="assets/js/insertattend.js"></script>
+	<script src="assets/js/click-table.js"></script>
+
+</head>
+
+<body>
+	<nav class="navbar shadow-sm .bg-white">
+		<div class="container" style="text-align: center;">
+			<div class="navbar-brand" style="padding-left: 10%;">
+				<a class="navbar-brand header-title" href="/"><b>華新雲平台</b> </a>
+			</div>
+			<div>
+				hi, user &emsp;
+				<a class="btn btn-outline-primary" href="login.html">登出</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- 側邊攔 -->
+	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%" id="sidebar">
+		<h4 class="w3-bar-item ">會議管理</h4>
+		<a href="manger.html" class="w3-bar-item">會議列表</a>
+		<a href="check.html" class="w3-bar-item">待核准會議</a>
+	</div>
+
+	<!-- 右頁面內容 -->
+	<div style="margin-left:15%; height: 100%; min-height: 100vh;">
+		<div class="w3-container">
+			<div style="margin-top: 3%;">
+
+				<div style="margin:0 5%">
+					<label style="font-size: 20px;">&#124;&nbsp;會議列表</label>
+				
+<!--New1130start:按鈕靠右-->
+				<div class="row">
+					<div class="col-sm">
+					<div style="text-align: right">
+					<a href="#" class="btn btn-primary btn-sm" data-toggle="modal"
+						data-target="#NewMeetingModal">舉辦會議</a>
+					</div>
+					</div>
+				</div>
+<!--New1130end-->
+					<!-- 想把按鈕移到靠右 -->
+					
+				</div>
+
+				<div style="margin:0 5%">
+					<!--後端讀取會議id，判斷是否簽核在badge的部分?跟時間判斷是否結束?過期?-->
+					<!-- <div style="background:#ddd ;margin: 1% 0;">
+						<ul class="list-group-light">
+							<a href="info.html" class="list-group-item list-group-item-action">會議01
+								<span class="badge badge-danger">已簽核</span>
+							</a>
+							<a href="info.html" class="list-group-item list-group-item-action">會議02
+								<span class="badge badge-danger">已簽核</span>
+							</a>
+							<a href="info.html" class="list-group-item list-group-item-action">會議03
+								<span class="badge badge-danger">已簽核</span>
+								<span class="badge badge-secondary">已結束</span>
+							</a>
+							<a href="info.html" class="list-group-item list-group-item-action">會議04
+								<span class="badge badge-light">未簽核</span>
+								<span class="badge badge-warning">已過期</span>
+							</a>
+							<a href="info.html" class="list-group-item list-group-item-action">會議05</a>
+						</ul>
+					</div> -->
+
+					<table class="table conf-table">
+						<thead>
+							<tr>
+								<th scope="col">會議編號</th>
+								<th scope="col">會議名稱</th>
+								<th scope="col">開始時間</th>
+								<th scope="col">地點</th>
+								<th scope="col">你的參與方式</th>
+								<th scope="col">會議狀態</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr onclick="tableClick()">
+								<td>123456789</td>
+								<td>會議01</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>在場</td>
+								<td><span class="badge badge-danger">已簽核</span></td>
+							</tr>
+							<tr>
+								<td>123456789</td>
+								<td>會議02</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>離線</td>
+								<td>
+									<span class="badge badge-light">未簽核</span>
+									<span class="badge badge-warning">已過期</span>
+								</td>
+							</tr>
+							<tr>
+								<td>123456789</td>
+								<td>會議03</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>離線</td>
+								<td>
+									<span class="badge badge-danger">已簽核</span>
+									<span class="badge badge-secondary">已結束</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--新增會議資料輸入後端-->
+	<div class="modal fade" id="NewMeetingModal" tabindex="-1" role="dialog" aria-labelledby="NewMeetingModalLabel"
+		aria-hidden="true">
+<!--New1130start:視窗變大-->
+		<div class="modal-dialog modal-lg" role="document">
+<!--New1130end-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="NewMeeting">新增會議</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="">
+						<div style="background:#f5f5f5;padding:1% 1%">
+							<div class="row" style="width: 100%; margin:0 auto;padding:1% 2%">
+								<div class="col-sm">
+									<label>會議名稱：</label>
+									<input type="text" class="form-control" id="meetingname">
+								</div>
+								
+<!--讀取後端-->
+<!--New1130start:改datalist-->
+								<div class="col-sm">
+								<label>承辦人編號：</label>
+									<input class="form-control" list="employeeList" name="employeeList" >
+										<datalist id="employeeList">
+											<option></option>
+										</datalist>
+								</div>
+<!--New1130end-->	
+							</div>
+							<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+								<div class="col-sm">
+									<label>開始時間：</label>
+									<input type="datetime-local" class="form-control" id="starttime">
+								</div>
+								<div class="col-sm">
+									<label>結束時間：</label>
+									<input type="datetime-local" class="form-control" id="endtime">
+								</div>
+							</div>
+							<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+								<div class="col-sm">
+									<!--讀取後端-->
+									<label>地點：</label>
+									<select class="form-control">
+										<option>會議室1</option>
+										<option>會議室2</option>
+										<option>會議室3</option>
+										<option>會議室4</option>
+										<option>會議室5</option>
+									</select>
+								</div>
+							</div>
+							<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+								<div class="col-sm">
+									<label>主題議程：</label>
+<!--New1130start:改input變texarea-->
+									<textarea class="form-control edit" id="theme" value="" >
+									</textarea>
+<!--New1130end-->
+								</div>
+							</div>
+							<div class="row" style="width: 100%;margin: 0 auto;padding:1% 2%">
+								<div class="col-sm">
+									<div class="row">
+										<div class="col-sm">
+											<label>與會人員：</label>
+										</div>
+										<!--讀取小視窗內讀取後端-->
+<!--New1130start:把刪除移掉，新增改不跳窗，直接動態加入下方-->
+										<div style="text-align: right">
+											<button type="button" class="btn btn-outline-primary btn-sm"
+												id="addattend">
+												<span aria-hidden="true">&#10010; 新增</span>
+											</button>
+										</div>
+<!--New1130end-->
+									</div>
+<!--New1130start:div布局改table-->
+									<table class="table table-striped" 
+											style="width: 100%; background:#fffffe; background-size:auto; ">
+											<thead  class="thead-light">
+												<tr >
+													<th scope="col">姓名</th>
+													<th scope="col">參與身分</th>
+													<th scope="col">與會模式</th>
+													<th scope="col" >刪除</th>
+												</tr>
+											</thead>
+											<tbody id="attendeelist">
+												<tr class="attendee" id="delattendee">
+													<th scope="row">
+														<input class="form-control" list="employeeList" name="employeeList" size="10">
+														<datalist id="employeeList">
+															<option></option>
+														</datalist>
+													</th>
+													<td >
+														<select id="attendtype" class="form-control">
+															<option value="1">主持人</option>
+															<option value="2">出席</option>
+															<option value="3">列席</option>
+														</select>
+													</td>
+													<td valign="middle">
+													</td>
+													<td >
+<!--
+														<button type="button" class="btn btn-outline-danger btn-sm" id="deleteattend" >
+															<span aria-hidden="true">&#10006;</span>
+														</button>
+-->
+													</td>
+												</tr>
+											</tbody>
+										</table>
+<!--New1130end-->
+								</div>
+							</div>
+						</div>
+						<div style="text-align:right;margin:2%">
+							<button class="btn btn-danger" type="submit">保存</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--New1130start:刪掉新增小跳窗-->
+<!--New1130end-->
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>華新雲平台 | 會議列表</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<script src="assets/js/jquery-3.4.1.min.js"></script>
+	<script src="assets/js/insertattend.js"></script>
+	<script src="assets/js/click-table.js"></script>
+
+</head>
+
+<body>
+	<nav class="navbar shadow-sm .bg-white">
+		<div class="container" style="text-align: center;">
+			<div class="navbar-brand" style="padding-left: 10%;">
+				<a class="navbar-brand header-title" href="/"><b>華新雲平台</b> </a>
+			</div>
+			<div>
+				hi, user &emsp;
+				<a class="btn btn-outline-primary" href="login.html">登出</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- 側邊攔 -->
+	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%" id="sidebar">
+		<h4 class="w3-bar-item ">會議管理</h4>
+		<a href="manger.html" class="w3-bar-item">會議列表</a>
+		<a href="check.html" class="w3-bar-item">待核准會議</a>
+		
+	</div>
+
+	<!-- 右頁面內容 -->
+	<div style="margin-left:15%; height: 100%; ">
+		<div class="w3-container">
+			<div style="margin-top: 3%;">
+
+				<div style="margin:0 5%">
+					<label style="font-size: 20px;">&#124;&nbsp;主持人簽核</label>
+				</div>
+				<div style="margin:0 5%">
+					<table class="table conf-table">
+						<thead>
+							<tr>
+								<th scope="col">會議編號</th>
+								<th scope="col">會議名稱</th>
+								<th scope="col">開始時間</th>
+								<th scope="col">地點</th>
+								<th scope="col">你的參與方式</th>
+								<th scope="col">會議狀態</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr onclick="tableClick()">
+								<td>123456789</td>
+								<td>會議01</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>在場</td>
+								<td><span class="badge badge-danger">已簽核</span></td>
+							</tr>
+							<tr>
+								<td>123456789</td>
+								<td>會議02</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>離線</td>
+								<td>
+									<span class="badge badge-light">未簽核</span>
+									<span class="badge badge-warning">已過期</span>
+								</td>
+							</tr>
+							<tr>
+								<td>123456789</td>
+								<td>會議03</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>離線</td>
+								<td>
+									<span class="badge badge-danger">已簽核</span>
+									<span class="badge badge-secondary">已結束</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+<div style="margin-left:15%; height: 100%; ">
+		<div class="w3-container">
+			<div style="margin-top: 3%;">
+
+				<div style="margin:0 5%">
+					<label style="font-size: 20px;">&#124;&nbsp;場地簽核</label>
+				</div>
+				<div style="margin:0 5%">
+					<table class="table conf-table">
+						<thead>
+							<tr>
+								<th scope="col">會議編號</th>
+								<th scope="col">會議名稱</th>
+								<th scope="col">開始時間</th>
+								<th scope="col">地點</th>
+								<th scope="col">你的參與方式</th>
+								<th scope="col">會議狀態</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr onclick="tableClick()">
+								<td>123456789</td>
+								<td>會議01</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>在場</td>
+								<td><span class="badge badge-danger">已簽核</span></td>
+							</tr>
+							<tr>
+								<td>123456789</td>
+								<td>會議02</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>離線</td>
+								<td>
+									<span class="badge badge-light">未簽核</span>
+									<span class="badge badge-warning">已過期</span>
+								</td>
+							</tr>
+							<tr>
+								<td>123456789</td>
+								<td>會議03</td>
+								<td>2020/12/15</td>
+								<td>第二會議室</td>
+								<td>離線</td>
+								<td>
+									<span class="badge badge-danger">已簽核</span>
+									<span class="badge badge-secondary">已結束</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+	</script>
+</body>
+
+</html>
